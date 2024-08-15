@@ -1,0 +1,146 @@
+#HTML CODE
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>To-Do List App</h1>
+    <form id="todo-form">
+      <input type="text" id="todo-input" placeholder="Enter a task">
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
+    <ul id="todo-list"></ul>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+#CSS CODE
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #todo-form {
+    margin-bottom: 20px;
+  }
+  
+  #todo-input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+  }
+  
+  #todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #todo-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  #todo-list li:last-child {
+    border-bottom: none;
+  }
+  
+  #todo-list li:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .btn {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #3e8e41;
+  }
+
+#JAVASCRIPT
+
+// Get the todo list element
+const todoList = document.getElementById('todo-list');
+
+// Get the todo form element
+const todoForm = document.getElementById('todo-form');
+
+// Get the todo input element
+const todoInput = document.getElementById('todo-input');
+
+// Create an array to store the todo items
+let todoItems = [];
+
+// Function to add a new todo item
+function addTodoItem(item) {
+  // Create a new list item element
+  const listItem = document.createElement('li');
+  listItem.textContent = item;
+  todoList.appendChild(listItem);
+  todoItems.push(item);
+}
+
+// Function to remove a todo item
+function removeTodoItem(index) {
+  // Get the list item element at the specified index
+  const listItem = todoList.children[index];
+  // Remove the list item element
+  todoList.removeChild(listItem);
+  // Remove the item from the todo items array
+  todoItems.splice(index, 1);
+}
+
+// Function to edit a todo item
+function editTodoItem(index, newItem) {
+  // Get the list item element at the specified index
+  const listItem = todoList.children[index];
+  // Update the text content of the list item element
+  listItem.textContent = newItem;
+  // Update the item in the todo items array
+  todoItems[index] = newItem;
+}
+
+// Event listener for the todo form submit event
+todoForm.addEventListener('submit', (e) => {
+  // Prevent the default form submission behavior
+  e.preventDefault();
+  // Get the value of the todo input element
+  const item = todoInput.value.trim();
+  // Add the new todo item
+  addTodoItem(item);
+  // Clear the todo input element
+  todoInput.value = '';
+});
+
+// Event listener for the todo list click event
+todo
